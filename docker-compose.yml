@@ -1,0 +1,19 @@
+version: "3"
+services:
+  php:
+    build:
+      context: './docker/php'
+      dockerfile: Dockerfile
+    image: php-with-parallel
+    volumes:
+      - .:/application
+      - ./docker/php/additional_php.ini:/usr/local/etc/php/conf.d/additional_php.ini
+    command: tail -f /dev/null
+    working_dir: /application
+  php81:
+    image: 'php:zts'
+    volumes:
+      - .:/application
+      - ./docker/php/additional_php.ini:/usr/local/etc/php/conf.d/additional_php.ini
+    command: tail -f /dev/null
+    working_dir: /application
